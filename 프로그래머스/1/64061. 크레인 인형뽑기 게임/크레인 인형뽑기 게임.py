@@ -8,16 +8,11 @@ def solution(board, moves):
             index += 1
 
         if index < len(board):
-            if len(basket) == 0:
-                basket.append(board[index][move-1])
-                board[index][move-1] = 0
+            if len(basket) > 0 and basket[-1] == board[index][move-1]:
+                basket.pop()
+                answer += 2
             else:
-                if basket[-1] == board[index][move-1]:
-                    basket.pop()
-                    answer += 2
-                    board[index][move-1] = 0
-                else:
-                    basket.append(board[index][move-1])
-                    board[index][move-1] = 0
-    
+                basket.append(board[index][move-1])
+            board[index][move-1] = 0
+            
     return answer
